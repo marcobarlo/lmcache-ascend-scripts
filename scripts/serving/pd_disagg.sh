@@ -20,7 +20,7 @@
 #   PREFILL_HOST=10.0.0.1 DECODE_HOST=10.0.0.2 PROXY_HOST=10.0.0.1 \
 #     NIC_NAME=eth0 LOCAL_IP=10.0.0.2 DECODE_NPUS=0,1,2,3,4,5,6,7 \
 #     PD_INSTANCE=decode ./run_pd_disagg_deepseek_v4.sh launch
-#   # Client: URL=http://10.0.0.1:9100/v1/chat/completions ./query3.sh
+#   # Client: URL=http://10.0.0.1:9100/v1/chat/completions ./query_example.sh
 #
 # Uses LMCacheAscendConnector (kv_producer / kv_consumer) instead of MooncakeHybridConnector.
 #

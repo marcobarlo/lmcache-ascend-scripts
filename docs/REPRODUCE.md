@@ -1,6 +1,6 @@
 # DSv4 Ascend Serving — Reproduction Guide
 
-End-to-end steps to clone, initialize containers, run four serving scenarios, and reproduce query3 smoke + GSM8K benchmarks on Ascend A3 (8×910 NPUs per node).
+End-to-end steps to clone, initialize containers, run four serving scenarios, and reproduce query_example smoke + GSM8K benchmarks on Ascend A3 (8×910 NPUs per node).
 
 ## Prerequisites
 
@@ -129,20 +129,20 @@ Same as scenario 3, but add `--disk` on both nodes:
 - L2 disk path per node: `/tmp/lmcache_disk_pd` (override via `LMCACHE_LOCAL_DISK`)
 - Cross-node KV still uses HCCL PD; disk is per-node unless on shared FS
 
-## 4. Smoke test (query3)
+## 4. Smoke test (query_example)
 
 Long-context PD payload (~1024-token chunks). Run from a machine that can reach the proxy or single-node port.
 
 **Single-node / disk:**
 
 ```bash
-URL=http://127.0.0.1:8008/v1/chat/completions ./scripts/benchmark/query3.sh
+URL=http://127.0.0.1:8008/v1/chat/completions ./scripts/benchmark/query_example.sh
 ```
 
 **PD modes:**
 
 ```bash
-URL=http://192.168.0.223:9100/v1/chat/completions ./scripts/benchmark/query3.sh
+URL=http://192.168.0.223:9100/v1/chat/completions ./scripts/benchmark/query_example.sh
 ```
 
 **Expected:**

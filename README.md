@@ -11,7 +11,7 @@ source versions.env
 git submodule update --init --recursive
 ```
 
-See [docs/REPRODUCE.md](docs/REPRODUCE.md) for container setup, four serving modes, query3 smoke, and GSM8K benchmarks.
+See [docs/REPRODUCE.md](docs/REPRODUCE.md) for container setup, four serving modes, query_example smoke, and GSM8K benchmarks.
 
 ## Serving modes
 
