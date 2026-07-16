@@ -1,0 +1,9 @@
+[submodule "LMCache"]
+	path = LMCache
+	url = https://github.com/LMCache/LMCache.git
+[submodule "LMCache-Ascend"]
+	path = LMCache-Ascend
+	url = https://github.com/marcobarlo/LMCache-Ascend.git
+[submodule "third_party/kvcache-ops"]
+	path = third_party/kvcache-ops
+	url = https://atomgit.com/marco_barlo/kvcache-ops.git
