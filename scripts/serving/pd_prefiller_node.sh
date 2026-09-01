@@ -33,11 +33,11 @@ export LAUNCH_PROXY=1
 if [[ "$USE_DISK" -eq 1 ]]; then
     export LOG_DIR="${LOG_DIR:-${REPO_ROOT}/logs/pd_disagg_dsv4_disk_prefill_node}"
     export LMCACHE_LOCAL_DISK="${LMCACHE_LOCAL_DISK:-/tmp/lmcache_disk_pd}"
-    LAUNCHER="${SCRIPT_DIR}/pd_disagg_disk.sh"
+    LAUNCHER="${REPO_ROOT}/scripts/serving/pd_disagg_disk.sh"
     echo "=== Prefiller node (PD + LocalDisk L2) ==="
 else
     export LOG_DIR="${LOG_DIR:-${REPO_ROOT}/logs/pd_disagg_dsv4_prefill_node}"
-    LAUNCHER="${SCRIPT_DIR}/pd_disagg.sh"
+    LAUNCHER="${REPO_ROOT}/scripts/serving/pd_disagg.sh"
     echo "=== Prefiller node (HCCL PD) ==="
 fi
 

@@ -33,11 +33,11 @@ export LAUNCH_PROXY=0
 if [[ "$USE_DISK" -eq 1 ]]; then
     export LOG_DIR="${LOG_DIR:-${REPO_ROOT}/logs/pd_disagg_dsv4_disk_decode_node}"
     export LMCACHE_LOCAL_DISK="${LMCACHE_LOCAL_DISK:-/tmp/lmcache_disk_pd}"
-    LAUNCHER="${SCRIPT_DIR}/pd_disagg_disk.sh"
+    LAUNCHER="${REPO_ROOT}/scripts/serving/pd_disagg_disk.sh"
     echo "=== Decoder node (PD + LocalDisk L2) ==="
 else
     export LOG_DIR="${LOG_DIR:-${REPO_ROOT}/logs/pd_disagg_dsv4_decode_node}"
-    LAUNCHER="${SCRIPT_DIR}/pd_disagg.sh"
+    LAUNCHER="${REPO_ROOT}/scripts/serving/pd_disagg.sh"
     echo "=== Decoder node (HCCL PD) ==="
 fi
 

@@ -111,7 +111,7 @@ DECODER_LOG="${DECODER_LOG:-${LOG_DIR}/decoder.log}"
 PROXY_LOG="${PROXY_LOG:-${LOG_DIR}/proxy.log}"
 
 LMCACHE_ROOT="${LMCACHE_ROOT:-${CONTAINER_LMCACHE_MOUNT:-/workspace/LMCache}}"
-PROXY_SCRIPT="${LMCACHE_ROOT}/examples/disagg_prefill/disagg_proxy_server.py"
+PROXY_SCRIPT="${PROXY_SCRIPT:-${LMCACHE_ROOT}/examples/disagg_prefill/disagg_proxy_server.py}"
 
 PREFILL_CFG="${PREFILL_LMCACHE_CONFIG:-${CFG_DIR}/lmcache-dsv4-prefiller-config.yaml}"
 DECODE_CFG="${DECODE_LMCACHE_CONFIG:-${CFG_DIR}/lmcache-dsv4-decoder-config.yaml}"
@@ -324,7 +324,8 @@ wait_for_server() {
 }
 
 # vLLM args aligned with tests/run_deepseek_lmc20.sh (PD role/kv-transfer differ).
-VLLM_LMC20_ADDITIONAL_CONFIG='{"ascend_compilation_config":{"enable_npugraph_ex":true,"enable_static_kernel":false},"enable_cpu_binding":true,"multistream_overlap_shared_expert":true}'
+# enable_cpu_binding:false — IRQ smp_affinity writes hang ~18min on this kernel.
+VLLM_LMC20_ADDITIONAL_CONFIG='{"ascend_compilation_config":{"enable_npugraph_ex":true,"enable_static_kernel":false},"enable_cpu_binding":false,"multistream_overlap_shared_expert":true}'
 
 VLLM_COMMON_ARGS=(
     --host 0.0.0.0

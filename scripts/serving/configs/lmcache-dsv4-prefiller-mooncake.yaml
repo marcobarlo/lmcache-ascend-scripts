@@ -1,0 +1,40 @@
+# HCCL PD (LMCache-Ascend) + Mooncake L2 store — prefiller / kv_producer.
+# Placeholders are filled by pd_mooncake_prefiller_node.sh from PREFILL_HOST /
+# PROXY_HOST / MOONCAKE_HOST (do not commit machine IPs).
+chunk_size: 1024
+use_layerwise: False
+numa_mode: "auto"
+
+# Mooncake needs a real LocalCPUBackend as a staging buffer (local_cpu: False
+# + enable_pd wraps a stub without .config and the connector fails).
+local_cpu: True
+max_local_cpu_size: 5
+
+remote_url: "mooncakestore://__MOONCAKE_HOST__:50051/"
+remote_serde: "naive"
+
+extra_config:
+  save_only_first_rank: true
+  save_chunk_meta: false
+  local_hostname: "__PREFILL_HOST__"
+  metadata_server: "http://__MOONCAKE_HOST__:8080/metadata"
+  protocol: "tcp"
+  master_server_address: "__MOONCAKE_HOST__:50051"
+  global_segment_size: 13958643712
+  local_buffer_size: 5368709120
+  transfer_timeout: 1
+
+enable_pd: True
+transfer_channel: "hccl"
+pd_role: "sender"
+pd_pull_mode: False
+pd_delay_pull: False
+pd_pull_done_port: [7600, 7601, 7602, 7603, 7604, 7605, 7606, 7607]
+pd_use_cpu_offload: False
+pd_cpu_buffer_size: 21474836480
+pd_peer_host: "__PREFILL_HOST__"
+pd_proxy_host: "__PROXY_HOST__"
+pd_proxy_port: 7500
+pd_buffer_size: 1073741824
+pd_buffer_device: "npu"
+save_unfull_chunk: True

@@ -36,7 +36,9 @@ export PD_BUFFER_SIZE="${PD_BUFFER_SIZE:-1073741824}"
 export LMCACHE_CHUNK_SIZE="${LMCACHE_CHUNK_SIZE:-1024}"
 export GPU_MEMORY_UTILIZATION="${GPU_MEMORY_UTILIZATION:-0.8}"
 export SAVE_ONLY_FIRST_RANK="${SAVE_ONLY_FIRST_RANK:-true}"
-export SERVER_WAIT_TIMEOUT="${SERVER_WAIT_TIMEOUT:-360}"
+export SERVER_WAIT_TIMEOUT="${SERVER_WAIT_TIMEOUT:-900}"
 
 # LMCache examples (disagg proxy) live in the submodule.
 export LMCACHE_ROOT="${LMCACHE_ROOT:-${CONTAINER_LMCACHE_MOUNT:-/workspace/LMCache}}"
+# Local copy: reads config.json so deepseek_v4 does not require Transformers AutoConfig.
+export PROXY_SCRIPT="${PROXY_SCRIPT:-${REPO_ROOT}/scripts/serving/disagg_proxy_server.py}"
